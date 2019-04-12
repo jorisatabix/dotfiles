@@ -195,9 +195,29 @@ Plug 'jez/vim-superman'
 " CSV plugin
 Plug 'chrisbra/csv.vim'
 
+" multiple languages support
+Plug 'sheerun/vim-polyglot'
+
+" Tags
+Plug 'jsfaint/gen_tags.vim'
+
+" Runs mix credo for elixir
+Plug 'neomake/neomake'
+autocmd! BufWritePost * Neomake
+
+" Elixir/Phoenix support
+Plug 'c-brenn/phoenix.vim'
+Plug 'tpope/vim-projectionist'
+
+" Autocomplete
+Plug 'slashmili/alchemist.vim'
+let g:alchemist_tag_disable = 1
+
+" Colorschemes
+Plug 'flazz/vim-colorschemes'
+
 " Initialize plugin system
 call plug#end()
-
 
 " source every plugin configs
 for file in split(glob("~/nvim/pluggedconf/*.nvimrc"), '\n')
@@ -449,3 +469,6 @@ autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoption
 
 " hu?
 inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
+
+" Colorscheme
+colorscheme jellybeans
