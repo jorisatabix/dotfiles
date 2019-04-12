@@ -169,10 +169,6 @@ Plug 'wgwoods/vim-systemd-syntax'
 " emmet for html
 Plug 'mattn/emmet-vim'
 
-" fzf - poweful fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 " allow multisearch in current directory / multi replace as well
 Plug 'wincent/ferret'
 
@@ -198,9 +194,6 @@ Plug 'chrisbra/csv.vim'
 " multiple languages support
 Plug 'sheerun/vim-polyglot'
 
-" Tags
-Plug 'jsfaint/gen_tags.vim'
-
 " Runs mix credo for elixir
 Plug 'neomake/neomake'
 autocmd! BufWritePost * Neomake
@@ -216,8 +209,15 @@ let g:alchemist_tag_disable = 1
 " Colorschemes
 Plug 'flazz/vim-colorschemes'
 
+" Fuzzy file search
+Plug 'cloudhead/neovim-fuzzy'
+
 " Initialize plugin system
 call plug#end()
+
+" -------------
+" END PLUG
+" -------------
 
 " source every plugin configs
 for file in split(glob("~/nvim/pluggedconf/*.nvimrc"), '\n')
@@ -375,6 +375,16 @@ let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
 xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
 
 "-----------------
+" Alt key mapping
+"-----------------
+
+" NERDTree
+noremap <A-1> :NERDTree<CR>
+
+" Fuzzy search
+noremap <A-2> :FuzzyOpen<CR>
+
+"-----------------
 " general config 
 "-----------------
 
@@ -466,3 +476,6 @@ inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(
 
 " Colorscheme
 colorscheme jellybeans
+
+" Map the leader key to SPACE
+let mapleader="\<SPACE>"
