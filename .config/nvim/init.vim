@@ -461,12 +461,6 @@ augroup END
 
 autocmd vimrc FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" enable the mouse
-" set mouse=a
-
-" No clue what it is :D
-" autocmd VimResized * wincmd =
-
 " hu?
 inoremap <expr> <c-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
