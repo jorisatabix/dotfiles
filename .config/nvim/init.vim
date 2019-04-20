@@ -381,8 +381,11 @@ xnoremap @ :<C-u>call general#ExecuteMacroOverVisualRange()<CR>
 " NERDTree
 noremap <A-1> :NERDTree<CR>
 
-" Fuzzy search
-noremap <A-2> :FuzzyOpen<CR>
+" Move to right window
+noremap <A-2> <C-w>l
+
+" Fuzzy search and move to right window
+noremap <A-3> <C-w>l:FuzzyOpen<CR>
 
 "-----------------
 " general config 
