@@ -259,6 +259,10 @@ Plug 'neomake/neomake'
 Plug '907th/vim-auto-save'
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
+" Tags
+Plug 'ludovicchabant/vim-gutentags'
+
+
 call plug#end()
 
 " -------------
