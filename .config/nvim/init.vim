@@ -212,7 +212,53 @@ Plug 'flazz/vim-colorschemes'
 " Fuzzy file search
 Plug 'cloudhead/neovim-fuzzy'
 
-" Initialize plugin system
+" Autocompletion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+  " use tab for completion
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+Plug 'sheerun/vim-polyglot'
+Plug 'elixir-editors/vim-elixir'
+
+Plug 'neomake/neomake'
+  " Run Neomake when I save any buffer
+  augroup neomake
+    autocmd! BufWritePost * Neomake
+  augroup END
+  " Don't tell me to use smartquotes in markdown ok?
+  let g:neomake_markdown_enabled_makers = []
+
+  " Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
+  let g:neomake_elixir_enabled_makers = ['mycredo']
+  function! NeomakeCredoErrorType(entry)
+    if a:entry.type ==# 'F'      " Refactoring opportunities
+      let l:type = 'W'
+    elseif a:entry.type ==# 'D'  " Software design suggestions
+      let l:type = 'I'
+    elseif a:entry.type ==# 'W'  " Warnings
+      let l:type = 'W'
+    elseif a:entry.type ==# 'R'  " Readability suggestions
+      let l:type = 'I'
+    elseif a:entry.type ==# 'C'  " Convention violation
+      let l:type = 'W'
+    else
+      let l:type = 'M'           " Everything else is a message
+    endif
+    let a:entry.type = l:type
+  endfunction
+
+  let g:neomake_elixir_mycredo_maker = {
+        \ 'exe': 'mix',
+        \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
+        \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
+        \ 'postprocess': function('NeomakeCredoErrorType')
+        \ }
+
+
+" Autosave
+Plug '907th/vim-auto-save'
+let g:auto_save = 1  " enable AutoSave on Vim startup
+
 call plug#end()
 
 " -------------
