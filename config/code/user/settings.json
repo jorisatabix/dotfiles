@@ -1,0 +1,9 @@
+{
+    "editor.lineNumbers": "relative",
+    "keyboard.dispatch": "keyCode",
+    "workbench.colorTheme": "Darcula",
+    "files.autoSave": "afterDelay",
+    "vim.easymotion": true,
+    "vim.ignorecase": false,
+    "vim.useSystemClipboard": true
+}
